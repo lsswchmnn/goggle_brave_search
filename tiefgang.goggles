@@ -10,6 +10,7 @@
 ! Pro Domain steht genau eine Regel; einzelne Subdomains (z. B. ocw.mit.edu, pubmed.ncbi.nlm.nih.gov) sind bewusst feiner eingestuft als ihre Hauptdomain.
 ! Harte Ausschlüsse: am Dateiende als auskommentierte Beispiele ($discard).
 
+
 !=============================================================================
 ! A) BEVORZUGT – Primärliteratur, Preprints, Datenbanken, Fachlexika
 !=============================================================================
@@ -271,6 +272,7 @@ $boost=2,site=etymonline.com
 $boost=2,site=oed.com
 $boost=2,site=linguistlist.org
 
+
 !=============================================================================
 ! B) ABGEWERTET – Lerninhalte für Schüler / Nachhilfe / Hausaufgaben
 !=============================================================================
@@ -338,6 +340,7 @@ $downrank=1,site=brilliant.org
 /bitesize/$downrank=2
 /homework$downrank=2
 /worksheets$downrank=2
+
 
 !=============================================================================
 ! C) ABGEWERTET – Shopping, Preisvergleich, Reise, Jobs, kommerzielle Portale
@@ -461,6 +464,7 @@ $downrank=2,site=investopedia.com
 /kaufberatung$downrank=2
 /shop/$downrank=1
 
+
 !=============================================================================
 ! D) ABGEWERTET – Content-Farmen, SEO-Ratgeber, Aggregatoren
 !=============================================================================
@@ -496,6 +500,7 @@ $downrank=2,site=netdoktor.de
 $downrank=2,site=onmeda.de
 $downrank=2,site=apotheken-umschau.de
 
+
 !=============================================================================
 ! E) ABGEWERTET – Social Media & Plattformen mit geringem Informationswert
 !=============================================================================
@@ -519,6 +524,7 @@ $downrank=2,site=imgur.com
 $downrank=2,site=tumblr.com
 $downrank=2,site=vk.com
 $downrank=2,site=ok.ru
+
 
 !=============================================================================
 ! F) ABGEWERTET – Tagesnachrichten & Tagespolitik (parteiübergreifend, gleiche Stufen)
@@ -642,6 +648,7 @@ $downrank=3,site=skysports.com
 $downrank=3,site=sport1.de
 $downrank=3,site=bleacherreport.com
 
+
 !=============================================================================
 ! G) ABGEWERTET – Boulevard, Promi-Klatsch, Clickbait
 !=============================================================================
@@ -656,6 +663,7 @@ $downrank=4,site=mirror.co.uk
 $downrank=4,site=tmz.com
 $downrank=3,site=people.com
 $downrank=3,site=eonline.com
+
 
 !=============================================================================
 ! H) ABGEWERTET – Schul-Lektürehilfen, Studentenarbeiten, Buchhandel, Kunstmarkt
@@ -700,3 +708,55 @@ $downrank=2,site=artnet.com
 ! $discard,site=coursehero.com
 ! $discard,site=chegg.com
 
+
+!=============================================================================
+! J) AUSGESCHLOSSEN – MediaWiki-Datei- und Meta-Seiten (Bilder, Diskussionen, Nutzer, Vorlagen)
+!    Gilt für Wikipedia in allen Sprachen sowie Wikibooks, Wikisource usw.
+!    Hinweis: $discard schlägt $boost, daher greift das trotz Wikipedia-Boost.
+!=============================================================================
+
+! --- Datei-/Bild-Seiten (Deutsch, Englisch, weitere Sprachen)
+/wiki/Datei:$discard
+/wiki/Datei%3A$discard
+/wiki/Datei_Diskussion:$discard
+/wiki/Bild:$discard
+/wiki/File:$discard
+/wiki/File%3A$discard
+/wiki/File_talk:$discard
+/wiki/Image:$discard
+/wiki/Fichier:$discard
+/wiki/Archivo:$discard
+/wiki/Bestand:$discard
+/wiki/Ficheiro:$discard
+/wiki/Plik:$discard
+
+! --- Wikimedia-Medienserver (direkte Dateien)
+$discard,site=upload.wikimedia.org
+
+! --- Diskussions-, Benutzer-, Vorlagen- und Systemseiten
+/wiki/Spezial:$discard
+/wiki/Special:$discard
+/wiki/Diskussion:$discard
+/wiki/Talk:$discard
+/wiki/Benutzer:$discard
+/wiki/Benutzer_Diskussion:$discard
+/wiki/User:$discard
+/wiki/User_talk:$discard
+/wiki/Vorlage:$discard
+/wiki/Vorlage_Diskussion:$discard
+/wiki/Template:$discard
+/wiki/Template_talk:$discard
+/wiki/MediaWiki:$discard
+/wiki/Wikipedia_Diskussion:$discard
+/wiki/Wikipedia_talk:$discard
+
+! --- Wikimedia Commons: Medienarchiv, kaum Fließtext (nicht geboostet, daher wirkt downrank)
+$downrank=3,site=commons.wikimedia.org
+
+! --- OPTIONAL (auskommentiert): weitere Namensräume ausschließen
+! /wiki/Kategorie:$discard
+! /wiki/Category:$discard
+! /wiki/Portal:$discard
+! /wiki/Hilfe:$discard
+! /wiki/Help:$discard
+! /wiki/Wikipedia:$discard
